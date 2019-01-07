@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HtmlToPdfConverter.Core\HtmlToPdfConverter.Core.csproj" />
-    <ProjectReference Include="..\HtmlToPdfConverter.Abstractions\HtmlToPdfConverter.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

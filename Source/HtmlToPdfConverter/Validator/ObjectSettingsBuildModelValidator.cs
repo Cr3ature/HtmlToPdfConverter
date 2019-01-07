@@ -1,10 +1,10 @@
-﻿using HtmlToPdfConverter.Abstractions.Contracts;
+﻿using HtmlToPdfConverter.Contracts;
 
-namespace HtmlToPdfConverter.Core.Validator
+namespace HtmlToPdfConverter.Validator
 {
     public static class ObjectSettingsBuildModelValidator
     {
-        public static bool IsValid(this ObjectSettingsBuildModel buildModel)
+        public static bool IsValid(this PdfBuildModel buildModel)
         {
             if (buildModel == null) return false;
 

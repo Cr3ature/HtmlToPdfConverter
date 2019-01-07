@@ -24,7 +24,7 @@ namespace HtmlToPdfConverter.Tests
             var mockConverter = new Mock<IConverter>();
             mockConverter.Setup(s => s.Convert(It.IsAny<IDocument>())).Returns(new byte[] { });
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(mockConverter.Object);
+            IPdfConverter pdfConverterCore = new PdfConverter(mockConverter.Object);
 
             Exception exception = await Record.ExceptionAsync(async () => await pdfConverterCore.CreatePdfDocument(buildModel)); 
 
@@ -51,7 +51,7 @@ namespace HtmlToPdfConverter.Tests
             var buildModel = _fixture.Create<ObjectSettingsBuildModel>();
             buildModel.DocumentTitle = string.Empty;
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(null);
+            IPdfConverter pdfConverterCore = new PdfConverter(null);
 
             Exception exception = Record.Exception(() => pdfConverterCore.GetGlobalSettings(buildModel).Exception);
 
@@ -72,7 +72,7 @@ namespace HtmlToPdfConverter.Tests
             var buildModel = _fixture.Create<ObjectSettingsBuildModel>();
             buildModel.HtmlContent = string.Empty;
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(null);
+            IPdfConverter pdfConverterCore = new PdfConverter(null);
 
             Exception exception = Record.Exception(() => pdfConverterCore.GetDefaultObjectSettings(buildModel).Exception);
 
@@ -94,7 +94,7 @@ namespace HtmlToPdfConverter.Tests
             var mockConverter = new Mock<IConverter>();
             mockConverter.Setup(s => s.Convert(It.IsAny<IDocument>())).Returns(new byte[] { });
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(mockConverter.Object);
+            IPdfConverter pdfConverterCore = new PdfConverter(mockConverter.Object);
             var result = await pdfConverterCore.CreatePdfDocument(buildModel);
 
             Assert.NotNull(result);
@@ -108,7 +108,7 @@ namespace HtmlToPdfConverter.Tests
             var buildModel = _fixture.Create<ObjectSettingsBuildModel>();
             var mockConverter = new Mock<IConverter>();
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(mockConverter.Object);
+            IPdfConverter pdfConverterCore = new PdfConverter(mockConverter.Object);
             GlobalSettings result = await pdfConverterCore.GetGlobalSettings(buildModel);
 
             Assert.NotNull(result);
@@ -120,7 +120,7 @@ namespace HtmlToPdfConverter.Tests
         {
             var buildModel = _fixture.Create<ObjectSettingsBuildModel>();
 
-            IPdfConverterCore pdfConverterCore = new PdfConverterCore(null);
+            IPdfConverter pdfConverterCore = new PdfConverter(null);
             ObjectSettings result = await pdfConverterCore.GetDefaultObjectSettings(buildModel);
 
             Assert.NotNull(result);
