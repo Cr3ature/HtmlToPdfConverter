@@ -1,7 +1,6 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
 using HtmlToPdfConverter.Configuration;
-using HtmlToPdfConverter.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Reflection;
@@ -14,25 +13,24 @@ namespace HtmlToPdfConverter.Abstractions.Configuration
         public static IServiceCollection AddHtmlToPdfConverterService(this IServiceCollection services)
         {
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-            services.AddScoped<IPdfConverterCore, PdfConverterCore>();
+            services.AddScoped<IPdfConverter, PdfConverter>();
 
             var context = new CustomAssemblyLoadContext();
             var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            var path = Path.Combine(projectRootFolder, "libwkhtmltox");
+            var path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dll");
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                path = Path.Combine(projectRootFolder, "libwkhtmltox.so");
+                path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.so");
             }
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                path = Path.Combine(projectRootFolder, "libwkhtmltox.dylib");
+                path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dylib");
             }
 
             context.LoadUnmanagedLibrary(path);
 
             return services;
         }
-
-
     }
 }

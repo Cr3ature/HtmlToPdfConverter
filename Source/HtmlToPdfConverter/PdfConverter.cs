@@ -97,6 +97,7 @@ namespace HtmlToPdfConverter
                 throw new ArgumentNullException(nameof(GetDefaultObjectSettings));
             }
 
+
             var result = new ObjectSettings
             {
                 FooterSettings = BuildDefaultFooterSettings(buildModel, pdfPageSpecification),
@@ -105,6 +106,12 @@ namespace HtmlToPdfConverter
                 PagesCount = buildModel.UsePageCount,
                 WebSettings = BuildDefaultWebSettings(buildModel, pdfPageSpecification),
             };
+
+            // Issue with libwkhtmltox if false is used
+            if(result.PagesCount.HasValue && result.PagesCount.Value.Equals(false))
+            {
+                result.PagesCount = null;
+            }
 
             return Task.FromResult(result);
         }
@@ -115,10 +122,10 @@ namespace HtmlToPdfConverter
 
             var result = new GlobalSettings
             {
-                ColorMode = ColorMode.Color,
-                Orientation = Orientation.Portrait,
-                PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 20, Bottom = 20 },
+                ColorMode = pdfPageSpecification.PageColorMode,
+                Orientation = pdfPageSpecification.PageOrientation,
+                PaperSize = pdfPageSpecification.PaperSize,
+                Margins = pdfPageSpecification.PageMargins,
                 DocumentTitle = buildModel.DocumentTitle,
             };
 

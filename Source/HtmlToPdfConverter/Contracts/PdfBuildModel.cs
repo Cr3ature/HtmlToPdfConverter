@@ -2,6 +2,14 @@
 {
     public class PdfBuildModel
     {
+
+        public PdfBuildModel(string documentTitle, string htmlContent, bool usePageCount)
+        {
+            DocumentTitle = documentTitle;
+            HtmlContent = htmlContent;
+            UsePageCount = usePageCount;
+        }
+
         //
         // Summary:
         //     The title of the PDF document. Default = ""
@@ -27,6 +35,6 @@
 
         public bool UseHeaderLine { get; set; } = false;
 
-        public bool UsePageCount { get; set; } = false;
+        public bool UsePageCount { get; set; }
     }
 }

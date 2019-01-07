@@ -14,15 +14,29 @@ namespace HtmlToPdfConverter.Contracts.PageSettings
 
         // Summary:
         // Fontsize of header and footer text
-        int FontSize { get; }
+        int? FontSize { get; }
+
+        // Summary:
+        // Colormode used for pdf (color or grayscale)
+        ColorMode PageColorMode { get; }
 
         // Summary:
         // Page margins (Top, Bottom, Left, Right)
         MarginSettings PageMargins { get; }
 
+
+        // Summary:
+        // Page orientation (portrait or landscape)
+        Orientation PageOrientation { get; }
+
         // Summary:
         // Spacing used on header and footer
-        int PageSpacing { get; }
+        double PageSpacing { get; }
+
+        // Summary:
+        // Papersize of the document
+         PaperKind PaperSize { get;}
+
 
         // Summary:
         // Uri of Stylesheet used on document

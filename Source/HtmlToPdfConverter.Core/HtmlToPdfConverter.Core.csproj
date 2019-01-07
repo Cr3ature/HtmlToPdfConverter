@@ -4,10 +4,15 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>David Vanderheyden</Authors>
+    <Description>Dependency injection and custom Assembly loader for the libwkhtmltox library.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HtmlToPdfConverter\HtmlToPdfConverter.csproj" />
   </ItemGroup>
 
 </Project>
