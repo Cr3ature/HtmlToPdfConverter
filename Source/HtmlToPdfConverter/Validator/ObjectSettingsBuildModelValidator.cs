@@ -12,22 +12,17 @@
 
             if (string.IsNullOrWhiteSpace(buildModel.HtmlContent)) return false;
 
-            if (buildModel.UseHeaderLine &&
+            if (buildModel.UsePageCount &&
                 string.IsNullOrWhiteSpace(buildModel.HeaderCenterText) &&
                 string.IsNullOrWhiteSpace(buildModel.HeaderLeftText) &&
-                string.IsNullOrWhiteSpace(buildModel.HeaderRightText))
-            {
-                return false;
-            }
-
-            if (buildModel.UseFooterLine &&
+                string.IsNullOrWhiteSpace(buildModel.HeaderRightText) &&
                 string.IsNullOrWhiteSpace(buildModel.FooterCenterText) &&
                 string.IsNullOrWhiteSpace(buildModel.FooterLeftText) &&
                 string.IsNullOrWhiteSpace(buildModel.FooterRightText))
             {
                 return false;
             }
-
+            
             return true;
         }
     }
