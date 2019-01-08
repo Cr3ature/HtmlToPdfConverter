@@ -9,6 +9,9 @@
     <Description>Html to pdf converter service build on the wrapper library DinkToPdf using specifications for pageSettings.</Description>
     <ApplicationIcon />
     <Win32Resource />
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
