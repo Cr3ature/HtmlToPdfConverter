@@ -27,3 +27,11 @@ steps:
   inputs:
     command: pack
     packagesToPack: '**/*.nuspec'
+
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'NuGetServiceConnection'
+    versioningScheme: byEnvVar
+    versionEnvVar: Version
