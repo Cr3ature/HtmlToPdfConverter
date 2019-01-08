@@ -32,6 +32,6 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: 'NuGetServiceConnection'
+    publishFeedCredentials: NuGetServiceConnection
     versioningScheme: byEnvVar
     versionEnvVar: Version
