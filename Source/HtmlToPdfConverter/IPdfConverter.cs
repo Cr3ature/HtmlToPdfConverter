@@ -1,11 +1,11 @@
-﻿using HtmlToPdfConverter.Contracts;
-using HtmlToPdfConverter.Contracts.PageSettings;
-using System.Threading.Tasks;
-
-namespace HtmlToPdfConverter
+﻿namespace HtmlToPdfConverter
 {
+    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
+    using HtmlToPdfConverter.Contracts.PdfBuildModelAggregates;
+    using System.Threading.Tasks;
+
     public interface IPdfConverter
     {
-        Task<byte[]> CreatePdfDocument(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification);
+        Task<byte[]> CreatePdfDocument(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification);
     }
 }

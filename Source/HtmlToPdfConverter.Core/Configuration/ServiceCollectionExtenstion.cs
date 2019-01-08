@@ -1,14 +1,14 @@
-﻿using DinkToPdf;
-using DinkToPdf.Contracts;
-using HtmlToPdfConverter.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-
-namespace HtmlToPdfConverter.Abstractions.Configuration
+﻿namespace HtmlToPdfConverter.Abstractions.Configuration
 {
-    public static class HostContainerExtenstion
+    using DinkToPdf;
+    using DinkToPdf.Contracts;
+    using HtmlToPdfConverter.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.IO;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+
+    public static class ServiceCollectionExtenstion
     {
         public static IServiceCollection AddHtmlToPdfConverterService(this IServiceCollection services)
         {

@@ -1,13 +1,13 @@
-﻿using DinkToPdf;
-using DinkToPdf.Contracts;
-using HtmlToPdfConverter.Contracts;
-using HtmlToPdfConverter.Contracts.PageSettings;
-using HtmlToPdfConverter.Validator;
-using System;
-using System.Threading.Tasks;
-
-namespace HtmlToPdfConverter
+﻿namespace HtmlToPdfConverter
 {
+    using DinkToPdf;
+    using DinkToPdf.Contracts;
+    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
+    using HtmlToPdfConverter.Contracts.PdfBuildModelAggregates;
+    using HtmlToPdfConverter.Validator;
+    using System;
+    using System.Threading.Tasks;
+
     public class PdfConverter : IPdfConverter
     {
         private readonly IConverter _converter;
@@ -17,7 +17,7 @@ namespace HtmlToPdfConverter
             _converter = converter;
         }
 
-        public async Task<byte[]> CreatePdfDocument(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        public async Task<byte[]> CreatePdfDocument(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace HtmlToPdfConverter
             }
         }
 
-        private static FooterSettings BuildDefaultFooterSettings(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        private static FooterSettings BuildDefaultFooterSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             return new FooterSettings
             {
@@ -51,7 +51,7 @@ namespace HtmlToPdfConverter
             };
         }
 
-        private static HeaderSettings BuildDefaultHeaderSettings(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        private static HeaderSettings BuildDefaultHeaderSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             return new HeaderSettings
             {
@@ -65,7 +65,7 @@ namespace HtmlToPdfConverter
             };
         }
 
-        private static WebSettings BuildDefaultWebSettings(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        private static WebSettings BuildDefaultWebSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             return new WebSettings
             {
@@ -90,13 +90,12 @@ namespace HtmlToPdfConverter
             return Task.FromResult(pdf);
         }
 
-        private Task<ObjectSettings> GetDefaultObjectSettings(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        private Task<ObjectSettings> GetDefaultObjectSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             if (string.IsNullOrWhiteSpace(buildModel.HtmlContent))
             {
                 throw new ArgumentNullException(nameof(GetDefaultObjectSettings));
             }
-
 
             var result = new ObjectSettings
             {
@@ -108,7 +107,7 @@ namespace HtmlToPdfConverter
             };
 
             // Issue with libwkhtmltox if false is used
-            if(result.PagesCount.HasValue && result.PagesCount.Value.Equals(false))
+            if (result.PagesCount.HasValue && result.PagesCount.Value.Equals(false))
             {
                 result.PagesCount = null;
             }
@@ -116,7 +115,7 @@ namespace HtmlToPdfConverter
             return Task.FromResult(result);
         }
 
-        private Task<GlobalSettings> GetGlobalSettings(PdfBuildModel buildModel, IBasePdfPageSpecification pdfPageSpecification)
+        private Task<GlobalSettings> GetGlobalSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             if (!buildModel.IsValid()) throw new ArgumentNullException(nameof(BuildDefaultWebSettings));
 

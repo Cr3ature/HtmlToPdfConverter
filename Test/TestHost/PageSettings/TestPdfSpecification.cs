@@ -1,16 +1,19 @@
-﻿using DinkToPdf;
-using HtmlToPdfConverter.Contracts.PageSettings;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestHost.PageSettings
+﻿namespace TestHost.PageSettings
 {
-    public class TestPdfSpecification: BasePdfPageSpecification
+    using DinkToPdf;
+    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
+    using System.IO;
+
+    public class TestPdfSpecification : BasePdfPageSpecification
     {
         public TestPdfSpecification()
-            :base(ColorMode.Color, new MarginSettings { Top = 20, Bottom = 20}, Orientation.Portrait, PaperKind.A4)
+            : base(ColorMode.Color, new MarginSettings { Top = 20, Bottom = 20 }, Orientation.Portrait, PaperKind.A4)
         {
+            SetDefaultEncoding("utf-8");
+            SetFontName("Arial");
+            SetFontSize(12);
+            SetPageSpacing(10);
+            SetUserStyleSheet(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "example.css"));
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.Loader;
-
-namespace TestHost.Configuration
+﻿namespace TestHost.Configuration
 {
+    using System;
+    using System.Reflection;
+    using System.Runtime.Loader;
+
     internal class CustomAssemblyLoadContext : AssemblyLoadContext
     {
         public IntPtr LoadUnmanagedLibrary(string absolutePath)

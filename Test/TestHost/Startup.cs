@@ -1,19 +1,12 @@
-﻿using DinkToPdf;
-using DinkToPdf.Contracts;
-using HtmlToPdfConverter;
-using HtmlToPdfConverter.Abstractions.Configuration;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using TestHost.Configuration;
-
-namespace TestHost
+﻿namespace TestHost
 {
+    using HtmlToPdfConverter.Abstractions.Configuration;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

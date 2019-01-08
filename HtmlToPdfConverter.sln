@@ -11,7 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlToPdfConverter", "Sourc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlToPdfConverter.Core", "Source\HtmlToPdfConverter.Core\HtmlToPdfConverter.Core.csproj", "{0C434848-35BB-4D8E-8957-040D3AD236D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHost", "Test\TestHost\TestHost.csproj", "{F23EF6D8-6D34-464B-BBE6-A90F6BA8F688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHost", "Test\TestHost\TestHost.csproj", "{F23EF6D8-6D34-464B-BBE6-A90F6BA8F688}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4FD6EDE5-C549-4AB1-9859-B90B4E37C371}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceTests", "ServiceTests", "{67F9ABDD-E007-4B77-A645-66F9A80AE3DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,9 +48,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1ED7F49A-F222-4D35-80A7-2F6DED863B35} = {385B78D4-276A-4541-BFA3-4FBE77C01DC3}
+		{1ED7F49A-F222-4D35-80A7-2F6DED863B35} = {67F9ABDD-E007-4B77-A645-66F9A80AE3DA}
 		{CDB788AC-43F0-458C-A135-419213F221A7} = {385B78D4-276A-4541-BFA3-4FBE77C01DC3}
 		{0C434848-35BB-4D8E-8957-040D3AD236D0} = {385B78D4-276A-4541-BFA3-4FBE77C01DC3}
+		{F23EF6D8-6D34-464B-BBE6-A90F6BA8F688} = {67F9ABDD-E007-4B77-A645-66F9A80AE3DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C19B9345-892B-4778-B5D5-4D0EA62CF70F}

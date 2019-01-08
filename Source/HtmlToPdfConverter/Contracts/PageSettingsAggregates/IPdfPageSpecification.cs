@@ -1,8 +1,8 @@
-﻿using DinkToPdf;
-
-namespace HtmlToPdfConverter.Contracts.PageSettings
+﻿namespace HtmlToPdfConverter.Contracts.PageSettingsAggregates
 {
-    public interface IBasePdfPageSpecification
+    using DinkToPdf;
+
+    public interface IPdfPageSpecification
     {
         // Summary:
         // DefaultEncoding of the document
@@ -24,7 +24,6 @@ namespace HtmlToPdfConverter.Contracts.PageSettings
         // Page margins (Top, Bottom, Left, Right)
         MarginSettings PageMargins { get; }
 
-
         // Summary:
         // Page orientation (portrait or landscape)
         Orientation PageOrientation { get; }
@@ -35,8 +34,7 @@ namespace HtmlToPdfConverter.Contracts.PageSettings
 
         // Summary:
         // Papersize of the document
-         PaperKind PaperSize { get;}
-
+        PaperKind PaperSize { get; }
 
         // Summary:
         // Uri of Stylesheet used on document
