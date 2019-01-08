@@ -22,3 +22,8 @@ steps:
     command: test
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**/*.nuspec'
