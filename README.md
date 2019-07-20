@@ -1,6 +1,7 @@
 ﻿# HtmlToPdfConverter 
+[![Build Status](https://dev.azure.com/DavidVanderheyden/HtmlToPdfConverter/_apis/build/status/HtmlToPdfConverter-CI?branchName=master)](https://dev.azure.com/DavidVanderheyden/HtmlToPdfConverter/_build/latest?definitionId=8&branchName=master)
 
-HtmlToPdfConverter is a wrapper of the [DinkToPdf](https://github.com/rdvojmoc/DinkToPdf) by [Rok Dvojmoč](https://github.com/rdvojmoc).  
+HtmlToPdfConverter is a wrapper of the [DinkToPdf](https://github.com/rdvojmoc/DinkToPdf) by [Rok Dvojmoč](https://github.com/rdvojmoc) for use within a ASP.Net Core project.  
 
 ## Get it on nuget
 Dotnet Core with DI integration
