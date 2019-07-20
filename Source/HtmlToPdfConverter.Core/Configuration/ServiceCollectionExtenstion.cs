@@ -10,22 +10,22 @@
 
     public static class ServiceCollectionExtenstion
     {
-        public static IServiceCollection AddHtmlToPdfConverterService(this IServiceCollection services)
+        public static IServiceCollection AddHtmlToPdfConverterService(this IServiceCollection services )
         {
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddScoped<IPdfConverter, PdfConverter>();
 
             var context = new CustomAssemblyLoadContext();
             var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            var path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dll");
+            var path = Path.Combine(projectRootFolder, RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dll");
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.so");
+                path = Path.Combine(projectRootFolder, RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.so");
             }
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                path = Path.Combine(projectRootFolder, "NativeLibs", RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dylib");
+                path = Path.Combine(projectRootFolder,  RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dylib");
             }
 
             context.LoadUnmanagedLibrary(path);

@@ -9,6 +9,9 @@
     <Description>Html to pdf converter service build on the wrapper library DinkToPdf using specifications for pageSettings.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Cr3ature/HtmlToPdfConverter</RepositoryUrl>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
