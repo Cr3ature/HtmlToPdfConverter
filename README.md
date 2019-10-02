@@ -22,6 +22,22 @@ PM> Install-Package HtmlToPdfConverter.Core
 
 In order to use the service there are abstract classes made for configuration of the PDF result.
 
+#### Setup the wrapper
+
+Setup DI registrations and bootstrap DinkToPdf
+
+````csharp
+
+// Inside startup.cs
+
+ using HtmlToPdfConverter.Abstractions.Configuration;
+
+ public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddHtmlToPdfConverterService();
+        }
+````
+
 #### PageSettings
 
 Base constructor contains required fields (color (color or grey), page margins, page orientation, pageSize)
