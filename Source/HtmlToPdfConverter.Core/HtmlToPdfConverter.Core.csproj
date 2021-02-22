@@ -20,14 +20,16 @@
 
   <ItemGroup>
     <Content Include="lib\X64\libwkhtmltox.dll" Pack="true" PackagePath="runtimes\win-x64\native">
+      <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lib\X64\libwkhtmltox.dylib" Pack="true" PackagePath="runtimes\osx-x64\native">
+      <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lib\X64\libwkhtmltox.so" Pack="true" PackagePath="runtimes\linux-x64\native">
+      <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
 </Project>
