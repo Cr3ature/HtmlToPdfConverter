@@ -14,7 +14,7 @@ namespace HtmlToPdfConverter.Configuration
         public static IServiceCollection AddHtmlToPdfConverter(this IServiceCollection services)
         {
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-            services.AddScoped<IPdfConverter, PdfConverter>();
+            services.AddSingleton<IPdfConverter, PdfConverter>();
 
             var context = new CustomAssemblyLoadContext();
             var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);

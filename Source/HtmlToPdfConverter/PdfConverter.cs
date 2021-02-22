@@ -6,7 +6,7 @@
     using System;
     using System.Threading.Tasks;
 
-    public class PdfConverter : IPdfConverter
+    internal class PdfConverter : IPdfConverter
     {
         private readonly IConverter _converter;
 
