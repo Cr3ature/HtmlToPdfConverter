@@ -1,6 +1,5 @@
 namespace HtmlToPdfConverter.Tests
 {
-    using AutoFixture;
     using DinkToPdf.Contracts;
     using HtmlToPdfConverter.Tests.Configurations;
     using Moq;
@@ -11,8 +10,6 @@ namespace HtmlToPdfConverter.Tests
 
     public class PdfConverterCoreTests
     {
-        private readonly Fixture _fixture = new Fixture();
-
         [Fact]
         public async Task Should_Fail_On_CreatePdfDocument_WithDocumentTitleNullOrEmpty()
         {

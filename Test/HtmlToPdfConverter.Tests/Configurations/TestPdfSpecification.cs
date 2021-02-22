@@ -1,7 +1,6 @@
 ﻿namespace HtmlToPdfConverter.Tests.Configurations
 {
     using DinkToPdf;
-    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
 
     public class TestPdfSpecification : BasePdfPageSpecification
     {

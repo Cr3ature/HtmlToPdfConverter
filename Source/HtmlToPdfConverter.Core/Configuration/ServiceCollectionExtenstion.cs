@@ -1,32 +1,32 @@
-﻿namespace HtmlToPdfConverter.Abstractions.Configuration
+﻿namespace HtmlToPdfConverterCore
 {
     using DinkToPdf;
     using DinkToPdf.Contracts;
-    using HtmlToPdfConverter.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using System;
     using System.IO;
     using System.Reflection;
     using System.Runtime.InteropServices;
 
     public static class ServiceCollectionExtenstion
     {
-        public static IServiceCollection AddHtmlToPdfConverterService(this IServiceCollection services )
+        public static IServiceCollection AddHtmlToPdfConverterCore(this IServiceCollection services)
         {
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-            services.AddSingleton<IPdfConverter, PdfConverter>();
 
             var context = new CustomAssemblyLoadContext();
             var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            var path = Path.Combine(projectRootFolder, RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dll");
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                path = Path.Combine(projectRootFolder, RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.so");
-            }
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                path = Path.Combine(projectRootFolder,  RuntimeInformation.ProcessArchitecture.ToString(), "libwkhtmltox.dylib");
-            }
+            string path;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                path = Path.Combine(projectRootFolder, "runtimes\\win-x64\\native", "libwkhtmltox.dll");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                path = Path.Combine(projectRootFolder, "runtimes\\linux-x64\\native", "libwkhtmltox.so");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                path = Path.Combine(projectRootFolder, "runtimes\\osx-x64\\native", "libwkhtmltox.dylib");
+            else
+                throw new InvalidOperationException("Supported OS Platform not found");
 
             context.LoadUnmanagedLibrary(path);
 

@@ -1,7 +1,7 @@
-﻿namespace TestHost.PdfBuildModels
-{
-    using HtmlToPdfConverter.Contracts.PdfBuildModelAggregates;
+﻿using HtmlToPdfConverter;
 
+namespace TestHost.PdfBuildModels
+{
     public class DefaultBuildModel : BasePdfBuildModel
     {
         public DefaultBuildModel(string documentTitle, string htmlContent)

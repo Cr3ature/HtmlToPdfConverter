@@ -2,8 +2,6 @@
 {
     using DinkToPdf;
     using DinkToPdf.Contracts;
-    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
-    using HtmlToPdfConverter.Contracts.PdfBuildModelAggregates;
     using HtmlToPdfConverter.Validator;
     using System;
     using System.Threading.Tasks;
@@ -37,8 +35,7 @@
         }
 
         private static FooterSettings BuildDefaultFooterSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
-        {
-            return new FooterSettings
+            => new FooterSettings
             {
                 FontName = pdfPageSpecification.FontName,
                 FontSize = pdfPageSpecification.FontSize,
@@ -49,11 +46,9 @@
                 Spacing = pdfPageSpecification.PageSpacing,
                 HtmUrl = buildModel.HtmlUri ?? string.Empty
             };
-        }
 
         private static HeaderSettings BuildDefaultHeaderSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
-        {
-            return new HeaderSettings
+            => new HeaderSettings
             {
                 FontName = pdfPageSpecification.FontName,
                 FontSize = pdfPageSpecification.FontSize,
@@ -63,16 +58,13 @@
                 Right = buildModel.HeaderRightText ?? string.Empty,
                 Spacing = pdfPageSpecification.PageSpacing
             };
-        }
 
-        private static WebSettings BuildDefaultWebSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
-        {
-            return new WebSettings
+        private static WebSettings BuildDefaultWebSettings(IPdfPageSpecification pdfPageSpecification)
+            => new WebSettings
             {
                 DefaultEncoding = pdfPageSpecification.DefaultEncoding,
                 UserStyleSheet = pdfPageSpecification.UserStyleSheet,
             };
-        }
 
         private Task<HtmlToPdfDocument> ConvertToPdf(GlobalSettings globalSettings, ObjectSettings objectSettings)
         {
@@ -81,45 +73,44 @@
                 throw new ArgumentNullException(nameof(ConvertToPdf));
             }
 
-            var pdf = new HtmlToPdfDocument
+            var htmlToPdfDocument = new HtmlToPdfDocument
             {
                 GlobalSettings = globalSettings,
                 Objects = { objectSettings }
             };
 
-            return Task.FromResult(pdf);
+            return Task.FromResult(htmlToPdfDocument);
         }
 
         private Task<ObjectSettings> GetDefaultObjectSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
             if (string.IsNullOrWhiteSpace(buildModel.HtmlContent))
-            {
                 throw new ArgumentNullException(nameof(GetDefaultObjectSettings));
-            }
 
-            var result = new ObjectSettings
+            var objectSettings = new ObjectSettings
             {
                 FooterSettings = BuildDefaultFooterSettings(buildModel, pdfPageSpecification),
                 HeaderSettings = BuildDefaultHeaderSettings(buildModel, pdfPageSpecification),
                 HtmlContent = buildModel.HtmlContent,
                 PagesCount = buildModel.UsePageCount,
-                WebSettings = BuildDefaultWebSettings(buildModel, pdfPageSpecification),
+                WebSettings = BuildDefaultWebSettings(pdfPageSpecification),
             };
 
             // Issue with libwkhtmltox if false is used
-            if (result.PagesCount.HasValue && result.PagesCount.Value.Equals(false))
+            if (objectSettings.PagesCount.HasValue && objectSettings.PagesCount.Value.Equals(false))
             {
-                result.PagesCount = null;
+                objectSettings.PagesCount = null;
             }
 
-            return Task.FromResult(result);
+            return Task.FromResult(objectSettings);
         }
 
         private Task<GlobalSettings> GetGlobalSettings(IPdfBuildModel buildModel, IPdfPageSpecification pdfPageSpecification)
         {
-            if (!buildModel.IsValid()) throw new ArgumentNullException(nameof(BuildDefaultWebSettings));
+            if (!buildModel.IsValid())
+                throw new ArgumentNullException(nameof(BuildDefaultWebSettings));
 
-            var result = new GlobalSettings
+            var globalSettings = new GlobalSettings
             {
                 ColorMode = pdfPageSpecification.PageColorMode,
                 Orientation = pdfPageSpecification.PageOrientation,
@@ -128,7 +119,7 @@
                 DocumentTitle = buildModel.DocumentTitle,
             };
 
-            return Task.FromResult(result);
+            return Task.FromResult(globalSettings);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace HtmlToPdfConverter.Validator
 {
-    using HtmlToPdfConverter.Contracts.PdfBuildModelAggregates;
+    using HtmlToPdfConverter;
 
     public static class ObjectSettingsBuildModelValidator
     {
@@ -22,7 +22,7 @@
             {
                 return false;
             }
-            
+
             return true;
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdfConverter.Contracts.PageSettingsAggregates
+﻿namespace HtmlToPdfConverter
 {
     using DinkToPdf;
 

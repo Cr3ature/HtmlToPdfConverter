@@ -1,11 +1,15 @@
-﻿namespace HtmlToPdfConverter.Contracts.PdfBuildModelAggregates
+﻿namespace HtmlToPdfConverter
 {
     public abstract class BasePdfBuildModel : IPdfBuildModel
     {
-        public BasePdfBuildModel(string documentTitle, string htmlContent)
+        protected BasePdfBuildModel(string documentTitle, string htmlContent)
         {
             DocumentTitle = documentTitle;
             HtmlContent = htmlContent;
+
+            UseFooterLine = false;
+            UseHeaderLine = false;
+            UsePageCount = false;
         }
 
         /// <summary>
@@ -56,18 +60,17 @@
         /// <summary>
         /// Places line between content and footer => default (false)
         /// </summary>
-        public bool UseFooterLine { get; private set; } = false;
+        public bool UseFooterLine { get; private set; }
 
         /// <summary>
         /// Places line between content and header => default (false)
         /// </summary>
-        public bool UseHeaderLine { get; private set; } = false;
+        public bool UseHeaderLine { get; private set; }
 
         /// <summary>
         /// Sets page numbering active => default (false)
         /// </summary>
-        public bool UsePageCount { get; private set; } = false;
-
+        public bool UsePageCount { get; private set; }
 
         /// <summary>
         /// Text is placed in center of a 3 column footer
@@ -86,6 +89,7 @@
         {
             FooterLeftText = leftFooterText;
         }
+
         /// <summary>
         /// A line is added between document content and footer
         /// </summary>

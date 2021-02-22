@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdfConverter.Contracts.PdfBuildModelAggregates
+﻿namespace HtmlToPdfConverter
 {
     public interface IPdfBuildModel
     {

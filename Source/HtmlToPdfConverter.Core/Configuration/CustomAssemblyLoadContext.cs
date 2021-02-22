@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdfConverter.Configuration
+﻿namespace HtmlToPdfConverterCore
 {
     using System;
     using System.Reflection;
@@ -7,9 +7,7 @@
     internal class CustomAssemblyLoadContext : AssemblyLoadContext
     {
         public IntPtr LoadUnmanagedLibrary(string absolutePath)
-        {
-            return this.LoadUnmanagedDll(absolutePath);
-        }
+            => this.LoadUnmanagedDll(absolutePath);
 
         protected override Assembly Load(AssemblyName assemblyName)
         {
@@ -17,8 +15,6 @@
         }
 
         protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
-        {
-            return this.LoadUnmanagedDllFromPath(unmanagedDllName);
-        }
+            => this.LoadUnmanagedDllFromPath(unmanagedDllName); 
     }
 }

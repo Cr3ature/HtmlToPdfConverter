@@ -6,32 +6,28 @@
     <Authors>David Vanderheyden</Authors>
     <Company />
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Html to pdf converter service build on the wrapper library DinkToPdf using specifications for pageSettings.</Description>
+    <Description>HtmlToPdfConverter is a wrapper on DinkToPdf using specifications for pageSettings with embeded resources and dynamic runtime loader based on OS (Windows, Linux, OSX).</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Cr3ature/HtmlToPdfConverter</RepositoryUrl>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
-    <Version>1.0.2</Version>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0</FileVersion>
+    <Version>2.3.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="libwkhtmltox.dll" />
-    <None Remove="libwkhtmltox.dylib" />
-    <None Remove="libwkhtmltox.so" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="NativeLibs\X64\libwkhtmltox.dll">
+    <Content Include="lib\X64\libwkhtmltox.dll" Pack="true" PackagePath="runtimes\win-x64\native">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="NativeLibs\X64\libwkhtmltox.dylib">
+    <Content Include="lib\X64\libwkhtmltox.dylib" Pack="true" PackagePath="runtimes\osx-x64\native">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="NativeLibs\X64\libwkhtmltox.so">
+    <Content Include="lib\X64\libwkhtmltox.so" Pack="true" PackagePath="runtimes\linux-x64\native">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿namespace TestHost.PageSettings
 {
     using DinkToPdf;
-    using HtmlToPdfConverter.Contracts.PageSettingsAggregates;
+    using HtmlToPdfConverter;
     using System.IO;
 
     public class TestPdfSpecification : BasePdfPageSpecification

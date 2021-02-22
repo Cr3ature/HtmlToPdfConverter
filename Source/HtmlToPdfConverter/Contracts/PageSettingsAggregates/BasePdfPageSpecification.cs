@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdfConverter.Contracts.PageSettingsAggregates
+﻿namespace HtmlToPdfConverter
 {
     using DinkToPdf;
 
@@ -17,17 +17,22 @@
             this.PageMargins = pageMargins ?? new MarginSettings { Top = 20, Bottom = 20 };
             this.PageOrientation = orientation;
             this.PaperSize = paperSize;
+
+            DefaultEncoding = "utf-8";
+            FontName = "Arial";
+            PageSpacing = 10;
+            UserStyleSheet = string.Empty;
         }
 
         /// <summary>
         /// DefaultEncoding of the document => default (utf-8)
         /// </summary>
-        public string DefaultEncoding { get; private set; } = "utf-8";
+        public string DefaultEncoding { get; private set; }
 
         /// <summary>
         /// Font used on document => default (Arial)
         /// </summary>
-        public string FontName { get; private set; } = "Arial";
+        public string FontName { get; private set; }
 
         /// <summary>
         /// Fontsize of header and footer text => default (12)
@@ -52,7 +57,7 @@
         /// <summary>
         /// Spacing used on header and footer => default 10
         /// </summary>
-        public double PageSpacing { get; private set; } = 10;
+        public double PageSpacing { get; private set; }
 
         /// <summary>
         /// Papersize of the document
@@ -62,7 +67,7 @@
         /// <summary>
         ///  Uri of Stylesheet used on document => default ""
         /// </summary>
-        public string UserStyleSheet { get; private set; } = string.Empty;
+        public string UserStyleSheet { get; private set; }
 
         /// <summary>
         /// Set the default encoding for the html content => default (utf-8)
