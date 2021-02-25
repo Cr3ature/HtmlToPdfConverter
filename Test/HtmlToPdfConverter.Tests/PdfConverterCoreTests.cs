@@ -76,7 +76,7 @@ namespace HtmlToPdfConverter.Tests
             mockConverter.Setup(s => s.Convert(It.IsAny<IDocument>())).Returns(new byte[] { });
 
             IPdfConverter pdfConverterCore = new PdfConverter(mockConverter.Object);
-            var result = await pdfConverterCore.CreatePdfDocument(buildModel, new TestPdfSpecification());
+            byte[] result = await pdfConverterCore.CreatePdfDocument(buildModel, new TestPdfSpecification());
 
             Assert.NotNull(result);
 

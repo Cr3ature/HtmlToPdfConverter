@@ -15,16 +15,17 @@
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
             var context = new CustomAssemblyLoadContext();
-            var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
             string path;
+            string runtimeArchitecture = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                path = Path.Combine(projectRootFolder, "runtimes\\win-x64\\native", "libwkhtmltox.dll");
+                path = Path.Combine(projectRootFolder, "runtimes\\win-", runtimeArchitecture, "\\native", "libwkhtmltox.dll");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                path = Path.Combine(projectRootFolder, "runtimes\\linux-x64\\native", "libwkhtmltox.so");
+                path = Path.Combine(projectRootFolder, "runtimes\\linux-", runtimeArchitecture, "\\native", "libwkhtmltox.so");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                path = Path.Combine(projectRootFolder, "runtimes\\osx-x64\\native", "libwkhtmltox.dylib");
+                path = Path.Combine(projectRootFolder, "runtimes\\osx-", runtimeArchitecture, "\\native", "libwkhtmltox.dylib");
             else
                 throw new InvalidOperationException("Supported OS Platform not found");
 

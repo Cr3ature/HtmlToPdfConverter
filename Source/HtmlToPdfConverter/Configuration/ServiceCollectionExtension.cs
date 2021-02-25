@@ -17,22 +17,27 @@ namespace HtmlToPdfConverter.Configuration
             services.AddSingleton<IPdfConverter, PdfConverter>();
 
             var context = new CustomAssemblyLoadContext();
-            var projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
-            string path;
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                path = Path.Combine(projectRootFolder, "runtimes\\win-x64\\native", "libwkhtmltox.dll");
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                path = Path.Combine(projectRootFolder, "runtimes\\linux-x64\\native", "libwkhtmltox.so");
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                path = Path.Combine(projectRootFolder, "runtimes\\osx-x64\\native", "libwkhtmltox.dylib");
-            else
-                throw new InvalidOperationException("Supported OS Platform not found");
+            string path = GetPath();
 
             context.LoadUnmanagedLibrary(path);
 
             return services;
+        }
+
+        private static string GetPath()
+        {
+            string projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+
+                return Path.Combine(projectRootFolder, "runtimes\\win-x64\\native", "libwkhtmltox.dll");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                return Path.Combine(projectRootFolder, "runtimes\\linux-x64\\native", "libwkhtmltox.so");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return Path.Combine(projectRootFolder, "runtimes\\osx-x64\\native", "libwkhtmltox.dylib");
+
+            throw new InvalidOperationException("Supported OS Platform not found");
         }
     }
 }

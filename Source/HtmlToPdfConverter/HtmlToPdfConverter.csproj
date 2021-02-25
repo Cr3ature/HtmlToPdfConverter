@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>David Vanderheyden</Authors>
     <Company />
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/Cr3ature/HtmlToPdfConverter</RepositoryUrl>
     <AssemblyVersion>2.2.0</AssemblyVersion>
     <FileVersion>2.2.0</FileVersion>
-    <Version>2.3.7</Version>
+    <Version>2.0.2-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="lib\x86\libwkhtmltox.dll" Pack="true" PackagePath="runtimes\win-x86\native">
+      <CopyToPublishDirectory>True</CopyToPublishDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\X64\libwkhtmltox.dll" Pack="true" PackagePath="runtimes\win-x64\native">
       <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -29,10 +33,14 @@
       <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="lib\X86\libwkhtmltox.so" Pack="true" PackagePath="runtimes\linux-x86\native">
+      <CopyToPublishDirectory>True</CopyToPublishDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\X64\libwkhtmltox.so" Pack="true" PackagePath="runtimes\linux-x64\native">
       <CopyToPublishDirectory>True</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
+  </ItemGroup> 
 
 </Project>
