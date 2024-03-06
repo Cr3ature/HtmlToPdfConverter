@@ -21,11 +21,11 @@
             string runtimeArchitecture = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                path = Path.Combine(projectRootFolder, "runtimes\\win-", runtimeArchitecture, "\\native", "libwkhtmltox.dll");
+                path = Path.Combine(projectRootFolder, "runtimes", "win-"+runtimeArchitecture, "native", "libwkhtmltox.dll");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                path = Path.Combine(projectRootFolder, "runtimes\\linux-", runtimeArchitecture, "\\native", "libwkhtmltox.so");
+                path = Path.Combine(projectRootFolder, "runtimes", "linux-"+runtimeArchitecture, "native", "libwkhtmltox.so");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                path = Path.Combine(projectRootFolder, "runtimes\\osx-", runtimeArchitecture, "\\native", "libwkhtmltox.dylib");
+                path = Path.Combine(projectRootFolder, "runtimes", "osx-"+runtimeArchitecture, "native", "libwkhtmltox.dylib");
             else
                 throw new InvalidOperationException("Supported OS Platform not found");
 

@@ -28,15 +28,25 @@ namespace HtmlToPdfConverter.Configuration
         private static string GetPath()
         {
             string projectRootFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
+            string runtimeArchitecture = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                var folderName = "win-" + runtimeArchitecture;
+                return Path.Combine(projectRootFolder, "runtimes", folderName, "native", "libwkhtmltox.dll");
+            } 
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                var folderName = "linux-" + runtimeArchitecture;
+                return Path.Combine(projectRootFolder, "runtimes", folderName, "native", "libwkhtmltox.so");
+            }
 
-                return Path.Combine(projectRootFolder, "runtimes\\win-x64\\native", "libwkhtmltox.dll");
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                return Path.Combine(projectRootFolder, "runtimes\\linux-x64\\native", "libwkhtmltox.so");
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                return Path.Combine(projectRootFolder, "runtimes\\osx-x64\\native", "libwkhtmltox.dylib");
-
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                var folderName = "osx-" + runtimeArchitecture;
+                return Path.Combine(projectRootFolder, "runtimes", folderName, "native", "libwkhtmltox.dylib");
+            }
+            
             throw new InvalidOperationException("Supported OS Platform not found");
         }
     }
